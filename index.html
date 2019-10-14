@@ -1,0 +1,898 @@
+<html>
+<style>
+</style>
+
+<head>
+    <title>那些年，我们的财富变迁史</title>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=750, user-scalable=no">
+    <script type="text/javascript" src="/js/preloadjs-0.6.0.min.js"></script>
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+    <script type="text/javascript" src="/js/common/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/js/dialog.min.js"></script>
+    <link rel="stylesheet" href="/css/vanke/dialog.css">
+    <script type="text/javascript" src="/js/canvas.js"></script>
+
+    <style>
+        body>img {
+            width: 0;
+        }
+      
+        .text img {
+            position: absolute;
+
+            z-index: 2;
+            display: none;
+        }
+
+        .text img:nth-child(odd) {
+            right: 74px;
+            ;
+            top: 144px;
+            ;
+        }
+
+        .text img:nth-child(even) {
+            left: 86px;
+            ;
+            top: 144px;
+        }
+
+        .text img:nth-child(5) {
+            right: auto;
+            left: 86px;
+            ;
+            top: 144px;
+        }
+
+        .text img:nth-child(6) {
+            right: 74px;
+            ;
+            left: auto;
+            ;
+            top: 144px;
+        }
+
+        html,
+        body {
+            margin: 0;
+        }
+
+        .container {
+            position: relative;
+            max-height: 100vh;
+            overflow: hidden;
+        }
+
+        .loading {
+            height:100vh;
+            position: absolute;
+            z-index: 2;
+            left: 0;
+            top: 0;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            width:100%;
+            background: url('/images/gq/bb/bg.jpg') no-repeat;
+        background-size: cover;
+        }
+
+        img {
+            pointer-events: none;
+        }
+        *{
+            pointer-events
+        }
+        .loading>img {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .opera {
+            display: none;
+            position: absolute;
+            bottom: 100px;
+            z-index:3;
+            width: 100%;
+            text-align: center;
+        }
+        .opera>span{
+            display:inline-block;
+            width:135px;
+            height:135px;
+            background:url('/images/gq/play_btn.png') no-repeat;
+            background-size:cover;
+        }
+        .pop_phone {
+            position: absolute;
+            min-height: 100%;
+            width: 100%;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 4;
+            display: none;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .phone {
+            display: none;
+            position: relative;
+        }
+
+        .p_options {
+            position: absolute;
+            top: 448px;
+            left: calc(50% - 186px);
+        }
+
+        .p_options .p_opera {
+            text-align: center;
+            margin-top: 35px;
+        }
+        .p_options .p_opera  img{
+            width: 270px;
+        }
+        .p_options .active::after {
+            content: "";
+            display: block;
+            background: blue;
+            opacity: 0.2;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+
+        }
+
+        .p_label {
+            position: relative;
+            margin-bottom: 38px;
+        }
+
+        .p_text img {
+            display: block;
+            margin-bottom: 36px;
+            visibility: hidden;
+            width:451px;
+        }
+
+        .circle {
+            position: absolute;
+            top: 582px;
+            display: none;
+            left: 0;
+        }
+
+        .phone_t {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    .hb_contain{
+        background: url('/images/gq/bb/bg.jpg') no-repeat;
+        background-size: cover;
+        border:2px solid white;
+    }
+        .result {
+            background: url('/images/gq/bb/bg.jpg') no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+            width: 100%;
+            display: none;
+            align-items: center;
+            position: fixed;
+            z-index: 4;
+        }
+        .rl{
+            background: url('/images/gq/bb/bg.jpg') no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+            width: 100%;
+            
+            justify-content:center;
+            align-items: center;
+            position: fixed;
+            z-index: 2;
+            display:none;
+
+        }
+        .rl>div{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            flex-wrap:wrap;
+
+        }
+        .result .r_logo {
+            float: right;
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+        .hb .r_logo{
+            right:20px;
+            position:absolute
+        }
+        .hb .r_logo img{
+            width: 150px;
+        }
+        .r_main {
+            width: 100%;
+
+            text-align: center;
+        }
+
+        .result .copyright {
+            margin-top: 6px;
+        }
+
+        .result .r_opera {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 104px;
+            box-sizing: border-box;
+            padding-top: 20px;
+
+        }
+        
+        @media screen and (min-height: 1350px) {
+            .r_logo {
+                position: absolute;
+                top: 60px;
+                right: 40px;
+            }
+            .r_opera {
+                position: absolute;
+                bottom: 120px;
+                width: 100%;
+                padding: 0 104px;
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+
+        .pop_form {
+            display: flex;
+            position: absolute;
+            min-height: 100%;
+            width: 100%;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 3;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .form .f_label {
+            padding: 0 70px;
+            font-size: 32px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 35px;
+            justify-content: space-between;
+
+        }
+
+        .f_label input {
+            height: 64px;
+            width: 350px;
+            text-indent: 1em;
+            font-size: 32px;
+        }
+
+        .result .form {
+            position: relative;
+            background: url('/images/gq/form/1.png') no-repeat;
+            background-size: cover;
+            width: 602px;
+            padding-top: 160px;
+            box-sizing: border-box;
+            font-size: 32px;
+            height: 592px;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        .result .middle {
+            text-align: center;
+        }
+
+        .form .f_opera {
+            margin-top: 40px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form .p_close {
+            position: absolute;
+            right: -35px;
+            top: -25px;
+            display: inline-block;
+            width: 86px;
+            height: 86px;
+            background: url('/images/gq/form/5.png') no-repeat;
+            background-size: cover;
+        }
+
+        .dialog-toast .dialog-content {
+            width: 296px;
+            height: 296px;
+        }
+
+        .dialog-toast .info-text {
+            font-size: 32px;
+        }
+
+        .dialog-toast .info-icon {
+            width: 112px;
+            max-width: 112px;
+        }
+
+        .dialog-notice .info-text {
+            font-size: 28px;
+        }
+
+        .goods {
+            position: relative;
+        }
+
+        .goods .stb {
+            position: absolute;
+            bottom: 44px;
+            left: 90px;
+
+        }
+        .heartBeat{
+            animation-name:swing;
+            animation-iteration-count: infinite;
+            animation-duration:1s;
+        }
+        .audio span{
+            background:url('/images/gq/music.png') no-repeat;
+            background-size:cover;
+            width:82px;
+            height:82px;
+            position:fixed;
+            top:20px;
+            left:20px;
+            z-index:13;
+            -webkit-transform:rotate(0deg);
+        }
+        .audio .play{
+            animation: ccircle 2s 0s linear infinite;
+        }
+        
+        .audio .pause{
+            background-position:bottom;
+        }
+        .hb{
+            position:fixed;
+            align-items:center;
+            justify-content:center;
+            width:100%;
+            height:100vh;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+            background:rgba(0,0,0,0.3);
+            z-index:5;
+            display:none;
+        }
+        #hb{
+            display:none;
+        }
+        .hb_contain{
+            position:relative;
+            padding:120px 30px 0;; 
+            box-sizing:border-box;
+            width: 580px;
+            height: 1030px;  
+        }
+        #hb{
+            pointer-events: auto;
+            width: 580px;
+            height: 1030px;  
+        }
+        .hb_contain img{
+            width:100%;
+        }
+        .hb .ewm{
+            margin-top :40px;
+        }
+        .hb .r_logo{
+            top: 20px;
+        }
+       
+        .a_rl{
+            background:url('/images/gq/rl.png?3');
+            background-size: 22200px 740px;
+            background-position:0 0;
+            display:inline-block;
+            margin-bottom:120px;
+            width:740px;
+            height:740px;
+        }
+     
+        @keyframes ccircle {
+        from{transform:rotate(0)}
+        to{transform:rotate(360deg)}
+        }
+        .save{
+            position:absolute;
+            bottom:40px;
+            text-align:center;
+            width:100%;
+            z-index:4;
+        }
+        .c_logo img{
+            width:300px;
+        }
+        .c_logo{
+            position:absolute;
+            width:100%;
+            bottom:5px;
+            text-align:center;
+        }
+        .loading .progress{
+            font-weight:bold;
+            position: relative;;
+            border-radius:  20px;
+            margin-top: 30px;
+            background: transparent;
+            border:1px solid #542f10;
+            width: 100%;
+            height: 10px;
+        }
+
+        .l_progress{
+            background: #542f10;
+            width:0;
+            height: 10px;
+
+            border-radius: 20px;
+        }
+        p{
+            padding:0;
+            margin:0;
+        }
+        .loading_img{
+            margin-bottom:120px;
+            font-size:32px;
+            color:#542f10;
+            position: relative;
+        }
+        body {
+
+-webkit-touch-callout:none;/*系统默认菜单被禁用*/
+
+-webkit-user-select:none;/*webkit浏览器*/
+
+-khtml-user-select:none;/*早起浏览器*/
+
+-moz-user-select:none;/*火狐浏览器*/
+
+-ms-user-select:none;/*IE浏览器*/
+
+user-select:none;/*用户是否能够选中文本*/
+
+}
+        .loading_img>span{
+            display:inline-block;
+            width:243px;
+            height: 182px;
+            background:url('/images/gq/load.png') no-repeat;
+            background-size:972px 186px;
+            background-position:0 0;
+            animation: loading 1s  steps(1, start) infinite; 
+
+        }
+        .big{
+            animation: big 2s 0s linear infinite;
+
+        }
+        *{
+            user-select:none;
+            -webkit-touch-callout:none;  
+
+        }
+        .rl_text{
+           visibility:hidden;
+        }
+        @-webkit-keyframes big {
+                from{
+                    opacity:1;
+                    transform:scale(1)
+
+                }
+                to{
+                    opacity:0;
+                    transform:scale(3)
+                }   
+              
+        }
+        @-webkit-keyframes loading {
+                25%{
+                    background-position-x:0;
+
+                }
+                50%{
+                    background-position-x:  -243px;
+                }
+                75% {
+                    background-position-x: -486px;
+                }
+                100% {
+                    background-position-x:  -729px;
+                }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading">
+    <div class="loading_img">
+            <span></span>
+            
+             <div class="progress">
+                 <div class="l_progress"></div>
+             </div>
+             <!-- <p>Loading...</p> -->
+         </div>
+        <div class="c_logo">
+            <img src="/images/gq/c_logo.png" alt="">
+        </div>
+    </div>
+    <div class="text">
+        <img src="/images/gq/zi.png?1" alt="">
+        <img src="/images/gq/zi2.png" alt="">
+        <img src="/images/gq/zi3.png" alt="">
+        <img src="/images/gq/zi4.png" alt="">
+        <img src="/images/gq/zi5.png" alt="">
+        <img src="/images/gq/zi6.png" alt="">
+    </div>
+
+    <div class="container">
+        <div class="rl">
+        <div>
+            <span class="rl_text">
+                <img src="/images/gq/r_text.png"/>
+            </span>
+           <span class="a_rl"></span>
+           </div>
+        </div>
+        <div class="hb" onclick="closeH()">
+            <img src="" id="hb" alt="">
+            <div class="save">
+                <img src="/images/gq/bb/save.png?1" alt="">
+            </div>
+            <div class="hb_contain">
+            <span class="r_logo">
+                    <img src="/images/gq/bb/logo.png" alt="">
+                </span>
+                <img src="" alt="">
+                <div class="goods">
+                    <img src="/images/gq/bb/icon0.png" />
+                    <span class="stb" onclick="Showform()">
+                        <img src="/images/gq/form/3.png" />
+                    </span>
+                </div>
+                <div class="copyright">
+                    <img src="/images/gq/bb/cory_right.png" />
+                </div>
+                <div class="ewm">
+                    <img src="/images/gq/bb/ewm.png"/>
+                </div>
+            </div>
+        </div>
+        <div class="pop_phone">
+            <div class="circle">
+                <img src="/images/gq/phone/circle.png" alt="">
+            </div>
+            <div class="phone_t">
+                <div class="p_text">
+                    <img src="/images/gq/text/1.png?1" alt="">
+                    <img src="/images/gq/text/2.png?1" alt="">
+                    <img src="/images/gq/text/3.png?1" alt="">
+                    <img src="/images/gq/text/4.png?1" alt="">
+                    <img src="/images/gq/text/5.png?1" alt="">
+                    <img src="/images/gq/text/6.png?1" alt="">
+                    <img src="/images/gq/text/7.png?1" alt="">
+                    <img src="/images/gq/text/8.png?1" alt="">
+                    <img src="/images/gq/text/9.png?1" alt="">
+                    <img src="/images/gq/text/10.png?1" alt="">
+                    <img src="/images/gq/text/11.png?1" alt="">
+                    <img src="/images/gq/text/12.png?1" alt="">
+                    <img src="/images/gq/text/13.png?1" alt="">
+
+                </div>
+            </div>
+            <div class="phone">
+                <img src="/images/gq/phone/phone.png" alt="">
+                <div class="p_options">
+                    <div class="p_label" data-score='1'>
+                        <img src="/images/gq/phone/A.png" alt="">
+                    </div>
+                    <div class="p_label" data-score='2'>
+                        <img src="/images/gq/phone/B.png" alt="">
+                    </div>
+                    <div class="p_label" data-score='3'>
+                        <img src="/images/gq/phone/C.png" alt="">
+                    </div>
+                    <div class="p_label" data-score='4'>
+                        <img src="/images/gq/phone/D.png" alt="">
+                    </div>
+                    <div class="p_label" data-score='5'>
+                        <img src="/images/gq/phone/E.png" alt="">
+                    </div>
+                    <div class="p_opera">
+                        <img src="/images/gq/phone/btn.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="result">
+        <div class="c_logo">
+            <img src="/images/gq/c_logo.png" alt="">
+        </div>
+            <div class="pop_form">
+                <div class="form">
+                    <span class="p_close" onclick="closep()"></span>
+                    <div class="f_label">
+                        <span>姓名:</span><input type="text" id="name" placeholder="请输入姓名">
+                    </div>
+                    <div class="f_label">
+                        <span>电话:</span><input type="phone" id="phone" placeholder="请输入电话">
+                    </div>
+
+                    <div class="f_opera" onclick="AjaxSubmit()">
+                        <img src="/images/gq/form/3.png" alt="">
+                    </div>
+                    <div class="middle">
+                        <img src="/images/gq/form/4.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="r_main">
+                <span class="r_logo">
+                    <img src="/images/gq/bb/logo.png" alt="">
+                </span>
+                <img src="" alt="">
+                <div class="goods">
+                    <img src="/images/gq/bb/icon0.png" />
+                    <span class="stb" onclick="Showform()">
+                        <img src="/images/gq/form/3.png" />
+                    </span>
+                </div>
+                <div class="copyright">
+                    <img src="/images/gq/bb/cory_right.png" />
+                </div>
+                <div class="r_opera">
+                    <span onclick="again()"><img src="/images/gq/bb/btn1.png" alt=""></span>
+                    <span onclick="share()"><img src="/images/gq/bb/btn2.png" alt=""></span>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="opera" id="opera">
+            <span class="heartBeat">
+            </span>
+        </div>
+        <div class="cvs">
+            <canvas width="750" height="1448" id="container"></canvas></div>
+            <div class="audio">
+                <span class="play"></span>
+            </div>
+    </div>
+
+    <div class="collection" style="display:none"></div>
+    <audio src="http://cdn.yskj.howlab.cn/images/gq/bgm.mp3?2" id="bgm" loop autoplay ></audio>
+
+</body>
+<script>
+    var config = {
+        imgList: [
+            {
+                link: '/images/gq/1.jpg',
+                imgW: '750',
+                imgH: '1448',
+            },
+            {
+                link: '/images/gq/2.jpg',
+                imgW: '1875',
+                imgH: '3620',
+                areaW: '196',
+                areaH: '380',
+                areaL: '254',
+                areaT: '1543',
+            },
+            {
+                link: '/images/gq/3.jpg',
+                imgW: '1875',
+                imgH: '3620',
+                areaW: '165',
+                areaH: '317',
+                areaL: '881',
+                areaT: '2287',
+            },
+            {
+                link: '/images/gq/4.jpg',
+                imgW: '1875',
+                imgH: '3620',
+                areaW: '161 ',
+                areaH: '310',
+                areaL: '503',
+                areaT: '1574',
+            },
+            {
+                link: '/images/gq/5.jpg',
+                imgW: '1875',
+                imgH: '3620',
+                areaW: '146 ',
+                areaH: '282',
+                areaL: '741 ',
+                areaT: '1130 ',
+                gif: 'p4',
+            },
+            {
+                link: '/images/gq/6.jpg',
+                imgW: '1875',
+                imgH: '3620',
+                areaW: '201  ',
+                areaH: '390',
+                areaL: '969  ',
+                areaT: '1042  ',
+                gif: 'p4',
+            }
+
+        ],
+        el: '#container',
+    }
+</script>
+<script src="/js/lib/index.umd.js?16"></script>
+<script src="/js/lifeng/gq.js?12"></script>
+<script>
+    function share(){
+        $('.hb .stb').hide() 
+        if($('#hb').attr('src')){
+            show($('.hb'),1,'fadeIn')
+            return 
+        }
+     
+        if($('.hb_contain>img').attr('src')!='/images/gq/bb/icon0.png'){
+            $('.hb .copyright').hide() 
+        }
+        $('.hb_contain>img').attr('src',$('.r_main>img').attr('src'))
+        $('.hb .goods>img').attr('src',$('.result .goods>img').attr('src'))
+         show($('.hb'),1,'fadeIn')
+        let sc = $(document).dialog({
+                        type : 'toast',
+                        infoIcon: 'http://cdn.yskj.howlab.cn/images/icon/loading.gif',
+                        infoText: '生成海报中...',
+                    });
+        setTimeout(() => {
+            html2canvas(document.querySelector(".hb_contain"),{
+                    useCORS: true,
+                 
+                }).then(canvas => {
+            // document.body.appendChild(canvas)
+                //将canvas画布放大若干倍，然后盛放在较小的容器内，就显得不模糊了
+                //把截取到的图片替换到a标签的路径下载  
+                // $('.hb').addClass('remo')
+                $('.hb_contain').hide()
+                $("#hb").show()
+                $("#hb").attr('src',canvas.toDataURL('image/png')); 
+                sc.close()
+        });
+        }, 1000);
+          
+       
+    }
+    function closeH(){
+        $('.hb').hide()
+    }
+    // console.log(pipCanvas)
+    function again() {
+        pipCanvas.clear()
+        $('.text img:nth-child(6)').hide()
+        pipCanvas.radio = 1,
+            pipCanvas.index = 0,
+            pipCanvas.scale = 0.99,
+            pipCanvas.scaleReturn = 0.8,
+            pipCanvas.answer = 0,
+            pipCanvas.w = 750,
+            pipCanvas.h = 1448,
+            $('.rl').removeClass('big')
+            $('.a_rl').css('background-position',`0 0`)
+            pipCanvas.gif_timer = null,
+            pipCanvas.timer = ""
+            cancelAnimationFrame(pipCanvas.timer);
+            $('.circle').removeClass('fadeIn')
+            $('.rl').css('display','flex')
+            setTimeout(() => {
+                show(  $('.rl_text'),1,'fadeIn')
+            }, 1000);
+            $('.circle').hide()
+            $('.phone').hide()
+            $('.phone').removeClass('slideInUp')
+            $('.result').hide()
+            $('.loading').hide()
+            $('.phone_t .p_text img').removeClass('fadeIn')
+            $('.phone_t .p_text img').css('visibility', 'hidden')
+            $('.pop_phone').hide()
+          
+            console.log(config)
+
+            $('.collection').html('')
+
+        // var pipCanvas =  new PipCanvas(config);
+        // pipCanvas.clear(); 
+            pipCanvas.init();
+    }
+    function show(imgobj, min, action, name) {
+        //fadeInDown fadeInUp fadeIn fadeInLeft fadeInRight
+        if (name) {
+            imgobj.css({ 'visibility': 'visible', 'display': name, '-webkit-animation-duration': min + 's' }).addClass(action);
+            return
+        }
+        imgobj.css({ 'visibility': 'visible', 'display': 'flex', '-webkit-animation-duration': min + 's' }).addClass(action);
+
+
+    }
+    function Showform() {
+        show($('.pop_form'), 1, 'fadeIn')
+    }
+    function AjaxSubmit() {
+     
+    }
+    function closep() {
+        $('.pop_form').hide()
+    }
+    // var info = eval(<?php echo json_encode($data);?>);
+
+    document.oncontextmenu = function (e) {
+
+        e.preventDefault();
+
+    };
+    document.body.addEventListener('touchmove', function (e) {
+        // clearInterval(time)
+        e.preventDefault();
+       
+    }, {
+            passive: false
+        });
+    $('.audio span').click(function(){
+            if($('.audio span').hasClass('pause')){
+                $('.audio span').removeClass('pause')
+                $('.audio span').addClass('play')
+                document.getElementById('bgm').play();
+            }else{
+                $('.audio span').addClass('pause')
+                $('.audio span').removeClass('play')
+
+                  document.getElementById('bgm').pause();
+            }
+            
+        })
+
+</script>
+
+</html>
